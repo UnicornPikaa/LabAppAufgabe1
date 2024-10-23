@@ -1,34 +1,26 @@
 name: Run Docker Compose
 
-on:
-  push:
-    branches:
-      
-main  # Run on push to the main branch
-pull_request:
-  branches:
-main  # Run on pull requests to the main branch
-
+on: [push]
 jobs:
   docker-compose:
     runs-on: ubuntu-latest
 
     steps:
     
-name: Checkout repository
-    uses: actions/checkout@v3
-
-    
-name: Set up Docker
-    uses: docker/setup-buildx-action@v2
-
-    
-name: Set up Docker Compose
-    run: |
-      sudo apt-get update
-      sudo apt-get install docker-compose -y
-
-    
-name: Build and run Docker Compose
-    run: |
-      docker-compose up --build -d
+      name: Checkout repository
+          uses: actions/checkout@v3
+      
+          
+      name: Set up Docker
+          uses: docker/setup-buildx-action@v2
+      
+          
+      name: Set up Docker Compose
+          run: |
+            sudo apt-get update
+            sudo apt-get install docker-compose -y
+      
+          
+      name: Build and run Docker Compose
+          run: |
+            docker-compose up --build -d
